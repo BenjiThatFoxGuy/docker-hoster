@@ -11,7 +11,7 @@ end_pattern = "#-----Do-not-add-hosts-after-this-line-----\n"
 hosts_path = "/tmp/hosts"
 hosts = {}
 
-dockerClient = docker.DockerClient(base_url="unix:///var/run/docker.sock")
+dockerClient = None
 
 
 def signal_handler(sig, frame):
@@ -72,6 +72,7 @@ def main():
 
 
 def get_container(container_id):
+    global dockerClient
     try:
         return dockerClient.containers.get(container_id)
     except docker.errors.NotFound:
