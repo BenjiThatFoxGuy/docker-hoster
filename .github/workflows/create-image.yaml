@@ -18,9 +18,12 @@ jobs:
           username: ${{ github.repository_owner }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Lowercase Repository Name
+        run: echo "REPO_LOWER=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
+
       - name: Build and Push Docker Image
         env:
-          IMAGE_NAME: ${{ format('ghcr.io/{0}', toLower(github.repository)) }}
+          IMAGE_NAME: ghcr.io/${{ env.REPO_LOWER }}
         run: |
           docker build . --tag "${IMAGE_NAME}:${{ github.ref_name }}"
           docker push "${IMAGE_NAME}:${{ github.ref_name }}"
