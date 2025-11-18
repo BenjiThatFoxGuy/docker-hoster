@@ -51,7 +51,9 @@ def main():
             continue
 
         action = event.get("Action")
-        container_id = event.get("id")
+        container_id = event.get("Actor", {}).get("ID")
+        if not container_id:
+            continue
 
         if action == "start":
             c = get_container(container_id)
