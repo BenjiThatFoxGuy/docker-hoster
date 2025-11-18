@@ -7,7 +7,7 @@ hoster is intended to run in a Docker container:
     docker run -d \
         -v /var/run/docker.sock:/tmp/docker.sock \
         -v /etc/hosts:/tmp/hosts \
-        dvdarias/docker-hoster
+        ghcr.io/mrmohebi/docker-hoster:latest
 
 The `docker.sock` is mounted to allow hoster to listen for Docker events and automatically register containers IP.
 

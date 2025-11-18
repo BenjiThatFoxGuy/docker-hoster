@@ -8,4 +8,6 @@ RUN mkdir /hoster
 WORKDIR /hoster
 COPY hoster.py /hoster/
 
-CMD ["python3", "-u", "hoster.py"]
+ENTRYPOINT ["python3", "-u", "hoster.py"]
+
+CMD ["/tmp/docker.sock", "/tmp/hosts"]
